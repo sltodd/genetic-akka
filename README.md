@@ -13,7 +13,11 @@ A framework for rapid deployment of genetic algorithm, built using Scala and Akk
 
 ## Usage
 
+Source code is intended to be run using [sbt](http://www.scala-sbt.org/).
+
 Please refer to unit tests for example usage.
+
+In order to run the unit tests, first execute ```sbt package``` to ensure the Akka configuration file is accessible.
 
 ## Configuration
 
