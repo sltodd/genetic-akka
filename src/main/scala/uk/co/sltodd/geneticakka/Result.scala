@@ -18,6 +18,5 @@ package uk.co.sltodd.geneticakka
 
 /**
  * Represents a <code>Chromosome</code> and its evaluated fitness.
- * 
  */
 case class Result(chromesome : Chromosome, fitness : Double)

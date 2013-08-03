@@ -137,9 +137,9 @@ class PopulationTest(_system: ActorSystem) extends TestKit(_system) with Implici
       a ! InjectPopulation(pop)
       Thread.sleep(50)
       val res = Await.result(a ? GetPopulationStats, timeout.duration)
-//      a ! ExportPopulation
-//      val res = Await.result(a ? ExportPopulation, timeout.duration).asInstanceOf[PopulationBackup]
-//      assert(res.chromosomes.size() == 10)      
+      a ! ExportPopulation
+      val res2 = Await.result(a ? ExportPopulation, timeout.duration).asInstanceOf[PopulationBackup]
+      assert(res2.chromosomes.size() == 10)      
     }
     
   }
