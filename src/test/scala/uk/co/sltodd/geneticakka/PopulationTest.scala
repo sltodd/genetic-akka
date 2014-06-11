@@ -20,7 +20,6 @@ import akka.actor.ActorSystem
 import akka.actor.Actor
 import akka.actor.Props
 import akka.testkit.TestKit
-import org.scalatest.WordSpec
 import org.scalatest.matchers.MustMatchers
 import org.scalatest.BeforeAndAfterAll
 import akka.testkit.ImplicitSender
@@ -35,21 +34,9 @@ import org.apache.commons.math3.util.FastMath
 import akka.dispatch.Dispatchers
 import scala.collection.mutable.Queue
 import java.util.ArrayList
+import org.scalatest.WordSpecLike
 
-
-@RunWith(classOf[JUnitRunner])
-class PopulationTest(_system: ActorSystem) extends TestKit(_system) with ImplicitSender
-  with WordSpec with MustMatchers with BeforeAndAfterAll {
- 
-  def this() = this(ActorSystem())
- 
-  implicit val timeout = Timeout(3 second)
-  
-  override def afterAll {
-    system.shutdown()
-  }
-  
-  class Cnd extends Host {
+class Cnd extends Host {
     def fitness(c : Chromosome) = {
       var e = StatUtils.mean(c.genes.toArray)
       val e2 = StatUtils.variance(c.genes.toArray)
@@ -58,11 +45,22 @@ class PopulationTest(_system: ActorSystem) extends TestKit(_system) with Implici
     }
     val chromosomeSize = 10
   }
+
+@RunWith(classOf[JUnitRunner])
+class PopulationTest(_system: ActorSystem) extends TestKit(_system) with ImplicitSender with WordSpecLike with MustMatchers with BeforeAndAfterAll {
+ 
+  def this() = this(ActorSystem("test"))
+ 
+  implicit val timeout = Timeout(1 second)
+  
+  override def afterAll {
+    system.shutdown()
+  }  
   
   "Population" must {
 
     "return Pong following Ping" in {
-    	val a = system.actorOf(Props(new Population[Cnd](() => new Cnd())))
+    	val a = system.actorOf(Props(new Population(() => new Cnd())))
       val result = Await.result(a ? Ping, timeout.duration)
       result match {
         case Pong => assert(true)

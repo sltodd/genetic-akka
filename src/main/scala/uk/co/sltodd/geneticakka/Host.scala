@@ -19,6 +19,7 @@ package uk.co.sltodd.geneticakka
 import akka.actor.Actor
 import org.apache.commons.math3.distribution.UniformRealDistribution
 import org.apache.commons.math3.random.Well44497a
+import scala.reflect.ClassTag
 
 /**
  * Hosts candidates.  Once passed a <code>Chromosome</code> it will attempt to calculate the fitness and respond to the sender.

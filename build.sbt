@@ -2,16 +2,16 @@ name := "genetic-akka"
 
 organization := "uk.co.sltodd"
 
-version := "1.0-SNAPSHOT"
+version := "0.1"
 
-scalaVersion := "2.10.2"
+scalaVersion := "2.11.1"
 
 libraryDependencies ++= Seq(
   "junit" % "junit" % "4.11",
-  "org.scalatest" %% "scalatest" % "1.9.1" % "test",
+  "org.scalatest" % "scalatest_2.11" % "2.2.0" % "test",
   "org.apache.commons" % "commons-math3" % "3.2",
-  "com.typesafe.akka" %% "akka-actor" % "2.2-M2",
-  "com.typesafe.akka" %% "akka-testkit" % "2.2-M2",
+  "com.typesafe.akka" %% "akka-actor" % "2.3.3",
+  "com.typesafe.akka" %% "akka-testkit" % "2.3.3",
   "com.h2database" % "h2" % "1.3.171",
   "org.hibernate" % "hibernate-core" % "4.2.0.Final"
 )

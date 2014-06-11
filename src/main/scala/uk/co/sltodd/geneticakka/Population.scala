@@ -31,6 +31,7 @@ import scala.collection.mutable.ListBuffer
 import com.typesafe.config._
 import akka.routing.BroadcastRouter
 import scala.collection.mutable.SynchronizedQueue
+import scala.reflect.ClassTag
 
 /**
  * The central hub for managing evolution. Actor contains a a collection of candidate solutions and coordinates the
@@ -41,7 +42,7 @@ import scala.collection.mutable.SynchronizedQueue
  * @param evolutionRate The steepness of the selection curve.
  * @param mutationRate The frequency that random mutations occur.
  */
-class Population[A<:Host](
+class Population[A<:Host:ClassTag](
     fac: () => A, 
     size : Int, 
     evolutionRate : Double, 
