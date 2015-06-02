@@ -91,9 +91,8 @@ class PopulationTest(_system: ActorSystem) extends TestKit(_system) with Implici
       val res = Await.result(a ? GetPopulationStats, timeout.duration)
       res match {
         case Failure => fail()
-        case p : PopulationStats => {
+        case p : PopulationStats =>
           if (p.size == 0) fail("not populating")
-        }
       }
        
       Thread.sleep(100)
