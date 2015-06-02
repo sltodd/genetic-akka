@@ -8,7 +8,7 @@ scalaVersion := "2.11.1"
 
 libraryDependencies ++= Seq(
   "junit" % "junit" % "4.11",
-  "org.scalatest" % "scalatest_2.11" % "2.2.0" % "test",
+  "org.scalatest" %% "scalatest" % "2.2.5" % "test",
   "org.apache.commons" % "commons-math3" % "3.2",
   "com.typesafe.akka" %% "akka-actor" % "2.3.3",
   "com.typesafe.akka" %% "akka-testkit" % "2.3.3",
