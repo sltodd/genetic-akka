@@ -25,9 +25,8 @@ import akka.util.Timeout
 import org.apache.commons.math3.stat.StatUtils
 import org.apache.commons.math3.util.FastMath
 import org.junit.runner.RunWith
-import org.scalatest.{BeforeAndAfterAll, WordSpecLike}
 import org.scalatest.junit.JUnitRunner
-import org.scalatest.matchers.MustMatchers
+import org.scalatest.{BeforeAndAfterAll, MustMatchers, WordSpecLike}
 
 import scala.collection.mutable.Queue
 import scala.concurrent.Await
