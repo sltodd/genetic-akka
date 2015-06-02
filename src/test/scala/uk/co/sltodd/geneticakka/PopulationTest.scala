@@ -16,26 +16,22 @@
 
 package uk.co.sltodd.geneticakka
 
-import akka.actor.ActorSystem
-import akka.actor.Actor
-import akka.actor.Props
-import akka.testkit.TestKit
-import org.scalatest.matchers.MustMatchers
-import org.scalatest.BeforeAndAfterAll
-import akka.testkit.ImplicitSender
-import akka.util.Timeout
-import scala.concurrent.duration._
-import scala.concurrent.Await
+import java.util.ArrayList
+
+import akka.actor.{ActorSystem, Props}
 import akka.pattern.ask
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
+import akka.testkit.{ImplicitSender, TestKit}
+import akka.util.Timeout
 import org.apache.commons.math3.stat.StatUtils
 import org.apache.commons.math3.util.FastMath
-import akka.dispatch.Dispatchers
-import scala.collection.mutable.Queue
-import java.util.ArrayList
-import org.scalatest.WordSpecLike
+import org.junit.runner.RunWith
+import org.scalatest.{BeforeAndAfterAll, WordSpecLike}
+import org.scalatest.junit.JUnitRunner
+import org.scalatest.matchers.MustMatchers
 
+import scala.collection.mutable.Queue
+import scala.concurrent.Await
+import scala.concurrent.duration._
 import scala.language.postfixOps
 
 class Cnd extends Host {
