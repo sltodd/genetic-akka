@@ -16,7 +16,7 @@
 
 package uk.co.sltodd.geneticakka
 
-import java.util.ArrayList
+import java.util
 
 import akka.actor.{ActorSystem, Props}
 import akka.pattern.ask
@@ -28,7 +28,7 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.{BeforeAndAfterAll, MustMatchers, WordSpecLike}
 
-import scala.collection.mutable.Queue
+import scala.collection.mutable
 import scala.concurrent.Await
 import scala.concurrent.duration._
 import scala.language.postfixOps
@@ -108,7 +108,7 @@ class PopulationTest(_system: ActorSystem) extends TestKit(_system) with Implici
       val a = system.actorOf(Props(new Population[Cnd](() => new Cnd(), 50, 1.5, 0.01, 10000)))
       a ! Start
       Thread.sleep(50)
-      val res = Await.result(a ? GetAllSolutions, timeout.duration).asInstanceOf[Queue[Result]]
+      val res = Await.result(a ? GetAllSolutions, timeout.duration).asInstanceOf[mutable.Queue[Result]]
       assert(res.length == 50)
     }
     
@@ -117,14 +117,14 @@ class PopulationTest(_system: ActorSystem) extends TestKit(_system) with Implici
       
       val pop = new PopulationBackup
       pop.label = "temp"
-      val chrs : java.util.List[ChromosomeBackup] = new ArrayList[ChromosomeBackup]()
+      val chrs : java.util.List[ChromosomeBackup] = new util.ArrayList[ChromosomeBackup]()
       for (x <- 1 until 10)
       chrs.add({
-        val c = new ChromosomeBackup; 
-        c.rank = x; c.genes = new ArrayList[java.lang.Double](); 
-        val tmp = List.fill(10)(0.5d);
-        for (y <- tmp) 
-          c.genes.add(new java.lang.Double(0.5));
+        val c = new ChromosomeBackup
+        c.rank = x; c.genes = new util.ArrayList[java.lang.Double]()
+        val tmp = List.fill(10)(0.5d)
+        for (y <- tmp)
+          c.genes.add(new java.lang.Double(0.5))
         c 
         })
       a ! InjectPopulation(pop)
