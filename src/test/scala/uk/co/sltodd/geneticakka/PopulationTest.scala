@@ -38,7 +38,6 @@ class Cnd extends Host {
     def fitness(c : Chromosome) = {
       val e = StatUtils.mean(c.genes.toArray)
       val e2 = StatUtils.variance(c.genes.toArray)
-      var a = 0d
       - FastMath.abs(e - 0.5) - e2
     }
     val chromosomeSize = 10
