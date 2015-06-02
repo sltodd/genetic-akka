@@ -40,7 +40,7 @@ import scala.language.postfixOps
 
 class Cnd extends Host {
     def fitness(c : Chromosome) = {
-      var e = StatUtils.mean(c.genes.toArray)
+      val e = StatUtils.mean(c.genes.toArray)
       val e2 = StatUtils.variance(c.genes.toArray)
       var a = 0d
       - FastMath.abs(e - 0.5) - e2
