@@ -36,6 +36,8 @@ import scala.collection.mutable.Queue
 import java.util.ArrayList
 import org.scalatest.WordSpecLike
 
+import scala.language.postfixOps
+
 class Cnd extends Host {
     def fitness(c : Chromosome) = {
       var e = StatUtils.mean(c.genes.toArray)
