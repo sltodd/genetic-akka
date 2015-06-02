@@ -55,7 +55,7 @@ class PopulationTest(_system: ActorSystem) extends TestKit(_system) with Implici
  
   implicit val timeout = Timeout(1 second)
   
-  override def afterAll {
+  override def afterAll() {
     system.shutdown()
   }  
   
