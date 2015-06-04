@@ -29,7 +29,7 @@ import akka.dispatch.Dispatchers
 import scala.collection.JavaConversions
 import scala.collection.mutable.ListBuffer
 import com.typesafe.config._
-import akka.routing.BroadcastRouter
+import akka.routing.BroadcastPool
 import scala.collection.mutable.SynchronizedQueue
 import scala.reflect.ClassTag
 
@@ -37,13 +37,13 @@ import scala.reflect.ClassTag
  * The central hub for managing evolution. Actor contains a a collection of candidate solutions and coordinates the
  * support Actors.
  * @constructor Creates a new population which will optimise solutions for the problem given by the type A.
- * @param fac A factory method to generate new instances of Actors of type A.
+ * @param factory A factory method to generate new instances of Actors of type A.
  * @param size The size of the population (fixed).
  * @param evolutionRate The steepness of the selection curve.
  * @param mutationRate The frequency that random mutations occur.
  */
 class Population[A<:Host:ClassTag](
-    fac: () => A, 
+    factory: () => A,
     size : Int, 
     evolutionRate : Double, 
     mutationRate : Double,
@@ -51,10 +51,12 @@ class Population[A<:Host:ClassTag](
   
   def this(fac: () => A) = this(fac, 1000, 1.5, 0.1, 10000)
 
-  val parallelism = ConfigFactory.load.getInt("akka.actor.host-dispatcher.workers")
+  val numWorkers = ConfigFactory.load.getInt("akka.actor.host-dispatcher.workers")
   protected val population = new SynchronizedQueue[Result]
-  protected val workers : List[ActorRef] = List.fill(parallelism)(context.actorOf(Props(fac()).withDispatcher("akka.actor.host-dispatcher")))
-  protected val host = context.actorOf(Props().withRouter(BroadcastRouter(routees = workers)))
+  protected val host = {
+    val workerProps = Props(factory()).withDispatcher("akka.actor.host-dispatcher")
+    context.actorOf(BroadcastPool(nrOfInstances = numWorkers).props(workerProps), "router")
+  }
   protected val breeder = context.actorOf(Props[Breeder], "breeder")
   protected val rng = new SeedFactory(seed)
   protected var running = false

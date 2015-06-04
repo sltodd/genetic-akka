@@ -9,3 +9,5 @@ target/
 .project
 
 *.db
+
+*.idea

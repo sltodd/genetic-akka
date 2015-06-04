@@ -2,16 +2,16 @@ name := "genetic-akka"
 
 organization := "uk.co.sltodd"
 
-version := "0.1"
+version := "0.1-SNAPSHOT"
 
-scalaVersion := "2.11.1"
+scalaVersion := "2.11.6"
 
 libraryDependencies ++= Seq(
   "junit" % "junit" % "4.11",
-  "org.scalatest" % "scalatest_2.11" % "2.2.0" % "test",
-  "org.apache.commons" % "commons-math3" % "3.2",
-  "com.typesafe.akka" %% "akka-actor" % "2.3.3",
-  "com.typesafe.akka" %% "akka-testkit" % "2.3.3",
+  "org.scalatest" %% "scalatest" % "2.2.5" % "test",
+  "org.apache.commons" % "commons-math3" % "3.5",
+  "com.typesafe.akka" %% "akka-actor" % "2.3.11",
+  "com.typesafe.akka" %% "akka-testkit" % "2.3.11",
   "com.h2database" % "h2" % "1.3.171",
   "org.hibernate" % "hibernate-core" % "4.2.0.Final"
 )
@@ -36,22 +36,22 @@ pomIncludeRepository := { _ => false }
 
 pomExtra := (
   <url>http://github.com/SLTodd/genetic-akka</url>
-  <licenses>
-    <license>
-      <name>Apache 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
-  <scm>
-    <url>git@github.com:SLTodd/genetic-akka.git</url>
-    <connection>scm:git:git@github.com:SLTodd/genetic-akka.git</connection>
-  </scm>
-  <developers>
-    <developer>
-      <id>SLTodd</id>
-      <name>Simon Todd</name>
-      <url>https://github.com/SLTodd</url>
-    </developer>
-  </developers>
-)
+    <licenses>
+      <license>
+        <name>Apache 2.0</name>
+        <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        <distribution>repo</distribution>
+      </license>
+    </licenses>
+    <scm>
+      <url>git@github.com:SLTodd/genetic-akka.git</url>
+      <connection>scm:git:git@github.com:SLTodd/genetic-akka.git</connection>
+    </scm>
+    <developers>
+      <developer>
+        <id>SLTodd</id>
+        <name>Simon Todd</name>
+        <url>https://github.com/SLTodd</url>
+      </developer>
+    </developers>
+  )
