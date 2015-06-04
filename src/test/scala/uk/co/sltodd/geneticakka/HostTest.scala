@@ -25,6 +25,8 @@ import akka.actor.ActorSystem
 import akka.util.Timeout
 import org.junit.Assert._
 
+import scala.language.postfixOps
+
 class HostTest {
 	
 	@Test
