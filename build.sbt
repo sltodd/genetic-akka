@@ -19,3 +19,39 @@ libraryDependencies ++= Seq(
 scalacOptions ++= Seq(
   "-feature"
 )
+
+publishTo <<= version { v: String =>
+  val nexus = "https://oss.sonatype.org/"
+  if (v.trim.endsWith("SNAPSHOT"))
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases" at nexus + "service/local/staging/deploy/maven2")
+}
+
+publishMavenStyle := true
+
+publishArtifact in Test := false
+
+pomIncludeRepository := { _ => false }
+
+pomExtra := (
+  <url>http://github.com/SLTodd/genetic-akka</url>
+    <licenses>
+      <license>
+        <name>Apache 2.0</name>
+        <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        <distribution>repo</distribution>
+      </license>
+    </licenses>
+    <scm>
+      <url>git@github.com:SLTodd/genetic-akka.git</url>
+      <connection>scm:git:git@github.com:SLTodd/genetic-akka.git</connection>
+    </scm>
+    <developers>
+      <developer>
+        <id>SLTodd</id>
+        <name>Simon Todd</name>
+        <url>https://github.com/SLTodd</url>
+      </developer>
+    </developers>
+  )
